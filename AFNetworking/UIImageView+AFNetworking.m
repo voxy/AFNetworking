@@ -151,6 +151,18 @@ static char kAFImageRequestOperationObjectKey;
     }
 }
 
++ (void) cacheImageWithURL:(NSURL *)url {
+	NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:30.0];
+	[request setHTTPShouldHandleCookies:NO];
+	[request setHTTPShouldUsePipelining:YES];
+	
+	AFImageRequestOperation *requestOperation = [[AFImageRequestOperation alloc] initWithRequest:request];
+	[requestOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+		[[[self class] af_sharedImageCache] cacheImage:responseObject forRequest:request];
+	}
+											failure:^(AFHTTPRequestOperation *operation, NSError *error) {}];
+}
+
 - (void)cancelImageRequestOperation {
     [self.af_imageRequestOperation cancel];
     self.af_imageRequestOperation = nil;
