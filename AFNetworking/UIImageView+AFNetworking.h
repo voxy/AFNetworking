@@ -69,6 +69,14 @@
                        failure:(void (^)(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error))failure;
 
 /**
+ Creates and enqueues an image request operation, which asynchronously downloads the image with the specified URL request object. When finished, the image is immediately cached. 
+ 
+ @param urlRequest The URL request used for the image request.
+ @discussion This method was added by us to allow for preloading of a set number of images. Don't try to abuse it to preload the images for, say, an entire table view. The code was taken from http://stackoverflow.com/questions/11236401/pre-cache-images-for-afnetworkings-uiimageview-category Since this is a CocoaPod, things get a little hairy if/when we updated the Podfile. If the compile starts complaining about about a missing method, hopefully it will lead you here and you can copy it over to the latest and greatest until I can figure out a good solution that doesn't include touching the actual library.
+ */
++ (void) cacheImageWithURL:(NSURL *)url;
+
+/**
  Cancels any executing image request operation for the receiver, if one exists.
  */
 - (void)cancelImageRequestOperation;
