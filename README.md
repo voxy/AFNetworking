@@ -1,3 +1,8 @@
+This is a fork of AFNetworking. It is a dependency of the iOS app. 
+
+If if line `pod 'AFNetworking', :git => 'https://github.com/voxy/AFNetworking', :branch=>'1.x'` no longer exists in the `Podfile` of the iOS app, you can safely delete this repo.
+
+
 <p align="center" >
   <img src="https://raw.github.com/AFNetworking/AFNetworking/assets/afnetworking-logo.png" alt="AFNetworking" title="AFNetworking">
 </p>
